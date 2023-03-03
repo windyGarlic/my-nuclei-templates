@@ -1,0 +1,29 @@
+info:
+  name: Detect-PHP-5.4.20
+  author: Jordan
+  severity: Critical
+
+
+requests:
+	- method: GET
+	  path:
+	    - "{{BaseURL}}"
+
+	  matchers-condition: and
+    matchers:
+	    - type: word
+        part: header
+        words:
+          - "PHP"
+
+      - type: staus
+        status:
+          - 200
+
+    extractors:
+      - type: word
+        part: header
+        group: 1
+        word:
+          - "X-Powered-By: PHP/5.4.20"
+          
