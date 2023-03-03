@@ -1,29 +1,30 @@
-info:
-  name: Detect-PHP-5.4.20
-  author: Jordan
-  severity: Critical
+id: php-detect-5.4.20
 
+info:
+  name: PHP Detect-5.4.20
+  author: turtl
+  severity: high
+  tags: tech,php
 
 requests:
-	- method: GET
-	  path:
-	    - "{{BaseURL}}"
+  - method: GET
+    path:
+      - "{{BaseURL}}"
 
-	  matchers-condition: and
+    matchers-condition: and
     matchers:
-	    - type: word
+      - type: word
         part: header
         words:
           - "PHP"
 
-      - type: staus
+      - type: status
         status:
           - 200
 
     extractors:
-      - type: word
+      - type: regex
         part: header
         group: 1
-        word:
+        regex:
           - "X-Powered-By: PHP/5.4.20"
-          
